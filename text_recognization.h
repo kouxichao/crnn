@@ -1,8 +1,6 @@
 #ifndef TEXT_RECOGNIZATION_H
 #define TEXT_RECOGNIZATION_H
 
-#include "net.h"
-
 typedef struct
 {
     //左上角开始顺时针点坐标
