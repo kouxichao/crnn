@@ -1,9 +1,0 @@
-/home/server/hisi/hi3559a/P07/Hi3559AV100_SDK_V2.0.0.7/mpp/dk_app/ncnn/examples/dlib-19.15/dlib/build/CMakeFiles/install/strip.dir
-/home/server/hisi/hi3559a/P07/Hi3559AV100_SDK_V2.0.0.7/mpp/dk_app/ncnn/examples/dlib-19.15/dlib/build/CMakeFiles/install/local.dir
-/home/server/hisi/hi3559a/P07/Hi3559AV100_SDK_V2.0.0.7/mpp/dk_app/ncnn/examples/dlib-19.15/dlib/build/CMakeFiles/rebuild_cache.dir
-/home/server/hisi/hi3559a/P07/Hi3559AV100_SDK_V2.0.0.7/mpp/dk_app/ncnn/examples/dlib-19.15/dlib/build/CMakeFiles/install.dir
-/home/server/hisi/hi3559a/P07/Hi3559AV100_SDK_V2.0.0.7/mpp/dk_app/ncnn/examples/dlib-19.15/dlib/build/CMakeFiles/list_install_components.dir
-/home/server/hisi/hi3559a/P07/Hi3559AV100_SDK_V2.0.0.7/mpp/dk_app/ncnn/examples/dlib-19.15/dlib/build/CMakeFiles/dlib.dir
-/home/server/hisi/hi3559a/P07/Hi3559AV100_SDK_V2.0.0.7/mpp/dk_app/ncnn/examples/dlib-19.15/dlib/build/CMakeFiles/package.dir
-/home/server/hisi/hi3559a/P07/Hi3559AV100_SDK_V2.0.0.7/mpp/dk_app/ncnn/examples/dlib-19.15/dlib/build/CMakeFiles/package_source.dir
-/home/server/hisi/hi3559a/P07/Hi3559AV100_SDK_V2.0.0.7/mpp/dk_app/ncnn/examples/dlib-19.15/dlib/build/CMakeFiles/edit_cache.dir
