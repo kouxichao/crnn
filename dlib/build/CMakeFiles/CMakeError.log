@@ -1,0 +1,56 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/server/hisi/hi3559a/P07/Hi3559AV100_SDK_V2.0.0.7/mpp/dk_app/ncnn/examples/dlib-19.15/dlib/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_9dd52/fast"
+/usr/bin/make -f CMakeFiles/cmTC_9dd52.dir/build.make CMakeFiles/cmTC_9dd52.dir/build
+make[1]: Entering directory '/home/server/hisi/hi3559a/P07/Hi3559AV100_SDK_V2.0.0.7/mpp/dk_app/ncnn/examples/dlib-19.15/dlib/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_9dd52.dir/CheckSymbolExists.c.o
+/opt/hisi-linux/x86-arm/aarch64-himix100-linux/bin/aarch64-himix100-linux-gcc    -o CMakeFiles/cmTC_9dd52.dir/CheckSymbolExists.c.o   -c /home/server/hisi/hi3559a/P07/Hi3559AV100_SDK_V2.0.0.7/mpp/dk_app/ncnn/examples/dlib-19.15/dlib/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_9dd52
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9dd52.dir/link.txt --verbose=1
+/opt/hisi-linux/x86-arm/aarch64-himix100-linux/bin/aarch64-himix100-linux-gcc      -rdynamic CMakeFiles/cmTC_9dd52.dir/CheckSymbolExists.c.o  -o cmTC_9dd52 
+CMakeFiles/cmTC_9dd52.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x14): undefined reference to `pthread_create'
+CheckSymbolExists.c:(.text+0x18): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_9dd52.dir/build.make:97: recipe for target 'cmTC_9dd52' failed
+make[1]: *** [cmTC_9dd52] Error 1
+make[1]: Leaving directory '/home/server/hisi/hi3559a/P07/Hi3559AV100_SDK_V2.0.0.7/mpp/dk_app/ncnn/examples/dlib-19.15/dlib/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_9dd52/fast' failed
+make: *** [cmTC_9dd52/fast] Error 2
+
+File /home/server/hisi/hi3559a/P07/Hi3559AV100_SDK_V2.0.0.7/mpp/dk_app/ncnn/examples/dlib-19.15/dlib/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/server/hisi/hi3559a/P07/Hi3559AV100_SDK_V2.0.0.7/mpp/dk_app/ncnn/examples/dlib-19.15/dlib/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_a60ff/fast"
+/usr/bin/make -f CMakeFiles/cmTC_a60ff.dir/build.make CMakeFiles/cmTC_a60ff.dir/build
+make[1]: Entering directory '/home/server/hisi/hi3559a/P07/Hi3559AV100_SDK_V2.0.0.7/mpp/dk_app/ncnn/examples/dlib-19.15/dlib/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_a60ff.dir/CheckFunctionExists.c.o
+/opt/hisi-linux/x86-arm/aarch64-himix100-linux/bin/aarch64-himix100-linux-gcc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_a60ff.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.8/Modules/CheckFunctionExists.c
+Linking C executable cmTC_a60ff
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a60ff.dir/link.txt --verbose=1
+/opt/hisi-linux/x86-arm/aarch64-himix100-linux/bin/aarch64-himix100-linux-gcc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_a60ff.dir/CheckFunctionExists.c.o  -o cmTC_a60ff -lpthreads 
+/opt/hisi-linux/x86-arm/aarch64-himix100-linux/host_bin/../lib/gcc/aarch64-linux-gnu/6.3.0/../../../../aarch64-linux-gnu/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_a60ff.dir/build.make:97: recipe for target 'cmTC_a60ff' failed
+make[1]: *** [cmTC_a60ff] Error 1
+make[1]: Leaving directory '/home/server/hisi/hi3559a/P07/Hi3559AV100_SDK_V2.0.0.7/mpp/dk_app/ncnn/examples/dlib-19.15/dlib/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_a60ff/fast' failed
+make: *** [cmTC_a60ff/fast] Error 2
+
+

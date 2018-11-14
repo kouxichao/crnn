@@ -1,0 +1,2 @@
+/opt/hisi-linux/x86-arm/aarch64-himix100-linux/bin/aarch64-himix100-linux-ar qc libneon_test.a  CMakeFiles/neon_test.dir/neon_test.cpp.o
+/opt/hisi-linux/x86-arm/aarch64-himix100-linux/bin/aarch64-himix100-linux-ranlib libneon_test.a
