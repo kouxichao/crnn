@@ -11,27 +11,33 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the
 // specific language governing permissions and limitations under the License.
-#include <stdio.h>
-#include "text_recognization.h"
 
-int main(int argc, char** argv)
+#ifndef NCNN_BLOB_H
+#define NCNN_BLOB_H
+
+#include <string>
+#include <vector>
+#include "platform.h"
+
+namespace ncnn {
+
+class Blob
 {
-    const char* rgbfilename = argv[1];
-    int iWidth = 100, iHeight = 32; //图片宽和高
-    DKSBoxTextRecognizationParam  param = {"0"};  
-    char* result;
+public:
+    // empty
+    Blob();
 
-    DKSBox box = {0,0,90,0,90,70,0,70};
-    DKBoxTextRecognizationInit();
+public:
+#if NCNN_STRING
+    // blob name
+    std::string name;
+#endif // NCNN_STRING
+    // layer index which produce this blob as output
+    int producer;
+    // layer index which need this blob as input
+    std::vector<int> consumers;
+};
 
-    
-    //参数依次为二进制图片文件名、四边形坐标DKSBox，最后一个参数目前没用到。
-    result = DKBoxTextRecognizationProcess(rgbfilename, iWidth, iHeight, box, param);
-    DKBoxTextRecognizationEnd();
+} // namespace ncnn
 
-    printf("recognization results: "); 
-    printf("%s\n", result);
-
-    return 0;
-}
-
+#endif // NCNN_BLOB_H
