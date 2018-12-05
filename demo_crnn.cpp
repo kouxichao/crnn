@@ -13,20 +13,24 @@
 // specific language governing permissions and limitations under the License.
 #include <stdio.h>
 #include "text_recognization.h"
+#include <time.h>
 
 int main(int argc, char** argv)
 {
-    const char* rgbfilename = argv[1];
-    int iWidth = 100, iHeight = 32; //图片宽和高
-    DKSBoxTextRecognizationParam  param = {"0"};  
-    char* result;
+    clock_t start, finsh;
+    const char *rgbfilename = argv[1];
+    DKSBoxTextRecognizationParam  param;
+    param.lexicon = true;//使用词典  
+    char *result,*finres;
 
-    DKSBox box = {0,0,90,0,90,70,0,70};
+    DKSBox box = {0,0,180,0,180,70,0,70};
+//    start = clock();
     DKBoxTextRecognizationInit();
+//    finsh = clock();
+//    printf("%ld ms\n", (finsh - start)/1000);
 
-    
     //参数依次为二进制图片文件名、四边形坐标DKSBox，最后一个参数目前没用到。
-    result = DKBoxTextRecognizationProcess(rgbfilename, iWidth, iHeight, box, param);
+    result = DKBoxTextRecognizationProcess(rgbfilename, box, param);
     DKBoxTextRecognizationEnd();
 
     printf("recognization results: "); 

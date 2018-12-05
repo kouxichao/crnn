@@ -17,14 +17,15 @@ typedef struct
 typedef struct
 {
 	//等待添加
-   const char* lexicon;
+   bool lexicon;
     
 }DKSBoxTextRecognizationParam;
 
+char* minDistanceWord(char* result);
 
 void DKBoxTextRecognizationInit();
 
-char* DKBoxTextRecognizationProcess(const char* imgfilename, int iWidth, int iHeight, DKSBox box, DKSBoxTextRecognizationParam param);
+char* DKBoxTextRecognizationProcess(const char* imgfilename, DKSBox box, DKSBoxTextRecognizationParam param);
 
 void DKBoxTextRecognizationEnd();
 

@@ -98,7 +98,16 @@ char* DKBoxTextRecognizationProcess(const char* rgbfilename, int iWidth, int iHe
         pre_index = char_index;
     }
     result.push_back('\0');
-    return (char*)result.data();
+
+    if(param.lexicon)
+    {
+        return minDistanceWord((char*)result.data());
+    }
+    else
+    {
+        return result.data();
+    }
+
 }
 
 void DKBoxTextRecognizationEnd()
