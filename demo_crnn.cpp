@@ -20,7 +20,7 @@ int main(int argc, char** argv)
     clock_t start, finsh;
     const char *rgbfilename = argv[1];
     DKSBoxTextRecognizationParam  param;
-    param.lexicon = true;//使用词典  
+    param.lexicon = false;//使用词典  
     char *result,*finres;
 
     DKSBox box = {0,0,180,0,180,70,0,70};
@@ -29,8 +29,8 @@ int main(int argc, char** argv)
 //    finsh = clock();
 //    printf("%ld ms\n", (finsh - start)/1000);
 
-    //参数依次为二进制图片文件名、四边形坐标DKSBox，最后一个参数目前没用到。
-    result = DKBoxTextRecognizationProcess(rgbfilename, box, param);
+    //参数依次为二进制图片文件名、输入图片宽、输入图片高、四边形坐标DKSBox、param.lexicon布尔型变量决定是否用字典。
+    result = DKBoxTextRecognizationProcess(rgbfilename, 100, 100, box, param);
     DKBoxTextRecognizationEnd();
 
     printf("recognization results: "); 
