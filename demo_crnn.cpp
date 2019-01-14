@@ -23,14 +23,14 @@ int main(int argc, char** argv)
     param.lexicon = false;//使用词典  
     char *result,*finres;
 
-    DKSBox box = {0,0,180,0,180,70,0,70};
+    DKSBox box = {0,0,736,0,736,974,0,974};
 //    start = clock();
     DKBoxTextRecognizationInit();
 //    finsh = clock();
 //    printf("%ld ms\n", (finsh - start)/1000);
 
     //参数依次为二进制图片文件名、输入图片宽、输入图片高、四边形坐标DKSBox、param.lexicon布尔型变量决定是否用字典。
-    result = DKBoxTextRecognizationProcess(rgbfilename, 100, 100, box, param);
+    result = DKBoxTextRecognizationProcess(rgbfilename, 736, 974, box, param);
     DKBoxTextRecognizationEnd();
 
     printf("recognization results: "); 
