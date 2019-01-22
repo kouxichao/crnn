@@ -3,7 +3,7 @@
 #include "text_recognization.h"
 #include <omp.h>
 
-static ncnn::Net netCrnn;
+ncnn::Net netCrnn;
 
 void DKBoxTextRecognizationInit()
 {
@@ -33,30 +33,32 @@ char* DKBoxTextRecognizationProcess(const char* rgbfilename, int iWidth, int iHe
     int x_right = box.x2 > box.x3 ? box.x2 : box.x3;
     y_top =  y_top > 0 ?  y_top : 0;
     x_left = x_left > 0 ? x_left : 0;
-    y_bottom = y_bottom < iHeight ? y_bottom : iHeight - 1; 
-    x_right = x_right < iWidth ? x_right : iWidth - 1;
+    y_bottom = y_bottom < iHeight ? y_bottom : iHeight; 
+    x_right = x_right < iWidth ? x_right : iWidth;
 
-    int cols = x_right - x_left + 1;
-    int rows = y_bottom - y_top + 1;
+    int cols = x_right - x_left;
+    int rows = y_bottom - y_top;
     ncnn::Mat img;
     img.create(cols, rows, 3, 1);
     int area = iWidth * iHeight;
 
-    printf("%d,%d,%d,%d\n", y_top, x_left, y_bottom, x_right);
+    printf("dasd _ %d,%d,%d,%d\n", y_top, x_left, y_bottom, x_right);
+
+#ifndef RGB_META
     #pragma omp parallel for     
 //rgb_panel
-    for(int i = y_top; i < y_bottom + 1; i++)
+    for(int i = y_top; i < y_bottom; i++)
     {
-        for(int j = x_left; j < x_right + 1; j++)
+        for(int j = x_left; j < x_right; j++)
         {
             *((unsigned char*)(img.data)+3*(i-y_top)*cols+3*(j-x_left))   = rgbData[i*iWidth + j];
             *((unsigned char*)(img.data)+3*(i-y_top)*cols+3*(j-x_left)+1) = rgbData[area + i*iWidth + j];
             *((unsigned char*)(img.data)+3*(i-y_top)*cols+3*(j-x_left)+2) = rgbData[area*2 + i*iWidth + j];
         }
     }
-
+#else
 // rgb_metapixel
-/*
+
     for(int i = y_top; i < y_bottom + 1; i++)
     {
         for(int j = x_left; j < x_right + 1; j++)
@@ -66,25 +68,25 @@ char* DKBoxTextRecognizationProcess(const char* rgbfilename, int iWidth, int iHe
             *((unsigned char*)(img.data)+3*(i-y_top)*cols+3*(j-x_left)+2) = rgbData[i*iWidth*3 + 3*j+2];
         }
     }
-*/
-//    delete  [] rgbData;
-
+#endif
+    delete  [] rgbData;
+//    fclose(stream);
     //预处理并获取字符序列索引
     ncnn::Mat in,input_data;
     ncnn::Mat pred;
-    in = ncnn::Mat::from_pixels((unsigned char*)img.data, ncnn::Mat::PIXEL_BGR2GRAY, cols, rows);
-    ncnn::resize_bilinear(in,input_data,50,32);
-    input_data.reshape(50,32,1);
+    in = ncnn::Mat::from_pixels((unsigned char*)img.data, ncnn::Mat::PIXEL_RGB2GRAY, cols, rows);
+    ncnn::resize_bilinear(in,input_data,100,32);
+    input_data.reshape(100,32,1);
     
     #pragma omp parallel for
-    for(int i=0; i<50 * 32; i++)
+    for(int i=0; i<100 * 32; i++)
     {
         *((float*)input_data.data+i) = ((*((float*)input_data.data+i))/255.f - 0.5)/0.5;
     }
 
     ncnn::Extractor ex = netCrnn.create_extractor();
 //    ex.set_num_threads(2);
-    ex.set_light_mode(false);
+    ex.set_light_mode(true);
     ex.input("data", input_data);
     ex.extract("preds", pred);
 
@@ -92,7 +94,18 @@ char* DKBoxTextRecognizationProcess(const char* rgbfilename, int iWidth, int iHe
     float maxprob; 
     int pre_index = 0;
     char alphabet[] = "0123456789abcdefghijklmnopqrstuvwxyz"; 
-    static std::vector<char> result;
+    char *result;
+    if(NULL == (result = (char *)malloc(26 * sizeof(char))))
+    /*请使用if来判断,这是有必要的*/
+    {
+        perror("error...");
+        exit(1);
+    }
+//    static std::vector<char> result;
+//    std::vector<char>::iterator iter = result.begin();
+//    for(;iter!=result.end();)
+//        iter = result.erase(iter);
+    int ccount=0;
     for (int j=0; j<pred.h; j++)
     {
         int char_index = 0;
@@ -107,20 +120,25 @@ char* DKBoxTextRecognizationProcess(const char* rgbfilename, int iWidth, int iHe
             }
         }
         if(char_index != 0 && (j==0 || char_index != pre_index))
-        { 
-            result.push_back(alphabet[char_index-1]);            
+        {
+            result[ccount] = alphabet[char_index-1];
+            ccount++; 
+//            result.push_back(alphabet[char_index-1]);            
         }      
         pre_index = char_index;
     }
-    result.push_back('\0');
+    result[ccount] = '\0';       
+//    result.push_back('\0');
 
     if(param.lexicon)
     {
-        return minDistanceWord((char*)result.data());
+        return result;
+//        return minDistanceWord((char*)result.data());
     }
     else
     {
-        return result.data();
+        return result;
+//        return result.data();
     }
 
 }

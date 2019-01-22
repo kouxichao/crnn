@@ -1,5 +1,6 @@
-CFLAGS += -I$(PWD)/ncnn -I$(PWD)/dlib -L$(PWD) -lncnn
-CFLAGS += -O3 -fopenmp -mcpu=cortex-a53+simd -mcpu=cortex-a53+fp
+RGB_FORMAT =
+CFLAGS += -I$(PWD)/ncnn -I$(PWD)/dlib -L$(PWD) -lncnn -ldlib
+CFLAGS += -O3 $(RGB_FORMAT) -fopenmp -mcpu=cortex-a53+simd -mcpu=cortex-a53+fp
 
 all:interface_crnn edit_dis demo_crnn
 

@@ -9,7 +9,7 @@ int minDistance(char* word1, char* word2) {
     for (int i = 0; i <= n2; ++i) dp[0][i] = i;
     for (int i = 1; i <= n1; ++i) {
         for (int j = 1; j <= n2; ++j) {
-            if (word1[i - 1] == word2[j - 1]) {
+            if (word1[i - 1] == word2[j - 1] || word1[i - 1] == word2[j - 1] + 32) {
                 dp[i][j] = dp[i - 1][j - 1];
             } else {
                 dp[i][j] = std::min(dp[i - 1][j - 1], std::min(dp[i - 1][j], dp[i][j - 1])) + 1;
