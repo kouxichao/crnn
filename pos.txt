@@ -1,0 +1,15 @@
+score: 0.500000  
+DetectRes.num=4
+scence i=0 135 96 189 111
+scence i=1 124 72 201 89
+scence i=2 142 141 184 161
+scence i=3 142 273 185 294
+###################wy 7#####################
+96,135,31,99
+recognization results: ctcciaiss
+72,124,31,99
+recognization results: ctcciaiss
+141,142,31,99
+recognization results: ctcciaiss
+273,142,31,99
+recognization results: ctcciaiss
