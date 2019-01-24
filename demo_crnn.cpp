@@ -65,7 +65,7 @@ int main(int argc, char** argv)
     clock_t start, finsh;
     const char *rgbfilename = argv[1];
     DKSBoxTextRecognizationParam  param;
-    param.lexicon = false;//使用词典  
+    param.lexicon = true;//使用词典  
     char *result,*finres;
 
     typedef struct{
@@ -87,9 +87,9 @@ int main(int argc, char** argv)
     finsh = clock();
     printf("init cost %d ms\n", (finsh - start)/1000);
     //参数依次为二进制图片文件名、输入图片宽、输入图片高、四边形坐标DKSBox、param.lexicon布尔型变量决定是否用字典。
-//    for(int i=0; i<1000; i++)
-//    {
-//        printf("%dth\n", i);
+    for(int i=0; i<1000; i++)
+    {
+        printf("%dth\n", i);
         start = clock();
         result = DKBoxTextRecognizationProcess("crnn.data", 384, 384, box, param);
         finsh = clock();
@@ -104,11 +104,11 @@ int main(int argc, char** argv)
 //        printf("%s\n", result);
 //        free(result);
 
-//    } 
+    } 
     DKBoxTextRecognizationEnd();
 
-    printf("recognization results: "); 
-    printf("%s\n", result);
+//    printf("recognization results: "); 
+//    printf("%s\n", result);
 
     return 0;
 }

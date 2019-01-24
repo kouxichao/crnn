@@ -41,9 +41,9 @@ char* DKBoxTextRecognizationProcess(const char* rgbfilename, int iWidth, int iHe
     ncnn::Mat img;
     img.create(cols, rows, 3, 1);
     int area = iWidth * iHeight;
-
-    printf("dasd _ %d,%d,%d,%d\n", y_top, x_left, y_bottom, x_right);
-
+#ifdef DEBUG 
+    printf("%d,%d,%d,%d\n", y_top, x_left, y_bottom, x_right);
+#endif    
 #ifndef RGB_META
     #pragma omp parallel for     
 //rgb_panel
@@ -132,8 +132,12 @@ char* DKBoxTextRecognizationProcess(const char* rgbfilename, int iWidth, int iHe
 
     if(param.lexicon)
     {
-        return result;
-//        return minDistanceWord((char*)result.data());
+//        return result;
+        char * editre;
+        if((editre = minDistanceWord(result)) != NULL)
+            return editre;
+        else
+            return result;
     }
     else
     {

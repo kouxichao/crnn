@@ -28,7 +28,13 @@ char* minDistanceWord(char* result)
         return NULL;
     }
     char buf[30];
-    static char finres[30];
+    char *finres;
+    if(NULL == (finres = (char *)malloc(26 * sizeof(char))))
+    /*请使用if来判断,这是有必要的*/
+    {
+        perror("error...");
+        exit(1);
+    }
     int len=0,mindis = __INT_MAX__;
 
     while (fgets(buf, 30, fp) != NULL) {
@@ -42,6 +48,8 @@ char* minDistanceWord(char* result)
             strcpy(finres, buf);
         }
     }
-    
-    return finres;
+    if(mindis < (strlen(result) >> 2)) 
+        return finres;
+    else
+        return NULL;
 }
