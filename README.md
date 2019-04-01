@@ -1,4 +1,4 @@
-# demo for crnn
+# demo for crnn（输入文件是图片二进制RGB数据）
 
 编译：
 ```
