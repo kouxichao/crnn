@@ -1,3 +1,5 @@
+# 推荐使用  https://github.com/kouxichao/ncnn 可完整编译，包含crnn_chinese, crnn_eng（todo）, face等示例。
+
 # demo for crnn（输入文件是图片二进制RGB数据）
 
 测试：
@@ -10,9 +12,20 @@ mxnet的权重转换（.bin）转换见https://github.com/kouxichao/ncnn，相�
 计算图.param转换目前需要手动调整（应该蛮简单的），并没有更改。
 
 pytorch转换参考https://github.com/starimeL/PytorchConverter,此项目由pytorch模型转过来的(https://github.com/meijieru/crnn.pytorch)。
+
+我的转换代码：https://pan.baidu.com/s/1sx2U5SRz0gAl3GRW3i-IEQ;提取码：1ugk
+param需要自己对照更改。使用pytorch-0.2可以完成转换，已测试。
 ```
 
-编译：
+# Compile
+ubuntu or other platform compile:
+```
+依赖库：
+	dlib库：需要自己编译生成dlib库文件，这里只用到dlib进行图片加载，当然也可以使用其他图片处理库如opencv，并更改相应函数。
+	ncnn库：参照https://github.com/kouxichao/ncnn进行编译。
+```
+
+3559A compile：
 ```
 在根目录下执行make,生成静态库libcrnn.a, 可执行文件demo_crnn。
     
