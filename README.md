@@ -1,4 +1,4 @@
-# 推荐使用  https://github.com/kouxichao/ncnn 可完整编译，包含crnn_chinese, crnn_eng（todo）, face等示例。
+# 推荐使用  https://github.com/kouxichao/ncnn 可完整编译，包含crnn_chinese, crnn_english, face等示例。
 
 # demo for crnn（输入文件是图片二进制RGB数据）
 
