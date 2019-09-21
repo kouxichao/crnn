@@ -11,8 +11,8 @@ mxnet的权重转换（.bin）转换见https://github.com/kouxichao/ncnn，相�
 
 pytorch转换参考https://github.com/starimeL/PytorchConverter,此项目由pytorch模型转过来的(https://github.com/meijieru/crnn.pytorch)。
 
-我的转换代码：https://pan.baidu.com/s/1sx2U5SRz0gAl3GRW3i-IEQ;提取码：1ugk
-param需要自己对照更改。使用pytorch-0.2可以完成转换，已测试。
+我的转换代码：https://github.com/kouxichao/pytorch_converter;
+param需要自己对照更改。使用pytorch-0.2可以完成转换。
 ```
 
 # Compile
@@ -29,7 +29,7 @@ ubuntu or other platform compile:
     
 使用静态库（需要包含text_recognization.h）：
 
-aarch64-himix100-linux-g++ demo_crnn.cpp libcrnn.a libncnn.a -O3 -mcpu=cortex-a53+simd -mcpu=cortex-a53+fp -o demo_crnn
+aarch64-himix100-linux-g++ demo_crnn.cpp libcrnn.a libncnn.a -O3 -march=armv8-a -o demo_crnn
 
 
 执行效率(crnn单张图片识别)：
